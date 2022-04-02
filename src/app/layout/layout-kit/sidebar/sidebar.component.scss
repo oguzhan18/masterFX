@@ -1,0 +1,99 @@
+@import "../../../../assets/theme";
+
+$sidebar-width: 200px;
+$sidebar-collapsed-width: 60px;
+
+:host {
+  display: block;
+  z-index: 100;
+}
+
+.btn-collapse {
+  transition: ease all .3s;
+  &.collapsed {
+    transform: rotate(180deg);
+  }
+}
+
+.btn.btn-circle {
+  border-radius: 12px;
+  height: 24px;
+  overflow-y: hidden;
+}
+
+.sidebar {
+  position: relative;
+  width: $sidebar-width;
+  height: 100vh;
+  transition: ease width .3s;
+
+  li {
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 35px;
+    &.active {
+      background-color: $white-opacity;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: $mercury;
+    img.active {
+      display: none;
+    }
+    img.inactive {
+      display: block;
+    }
+    span {
+      transition: ease color .3s;
+      min-width: 70px;
+    }
+    &:hover {
+      img.active {
+        display: block;
+      }
+      img.inactive {
+        display: none;
+      }
+    }
+    &.active {
+      img.active {
+        display: block;
+      }
+      img.inactive {
+        display: none;
+      }
+    }
+  }
+  .logo{
+      position: relative;
+      top: 0;
+      left: 0;
+         height: 4vw; 
+         width:100%;
+  }
+  .connect-btn-wrapper {
+    display: flex;
+    padding-left: 16px;
+    .btn-circle {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+
+  &.collapsed {
+    width: $sidebar-collapsed-width;
+    a span {
+      display: none;
+    }
+
+    .btn-circle {
+      padding: 12px !important;
+    }
+
+    @include media-breakpoint-down(sm) {
+      width: 0;
+    }
+  }
+}

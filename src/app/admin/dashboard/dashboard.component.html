@@ -1,0 +1,39 @@
+<section class="w-100 vh-100 p-2 d-flex">
+  <div class="flex-grow-1 p-0 m-0 d-flex flex-column">
+
+    <div class="bg-color-shark border-radius-13 m-2 px-15 py-10 d-flex align-items-center justify-content-between simple-shadow">
+      <span class="color-mercury font-22">TRY / USD</span>
+      <div class="d-flex">
+        <span class="border-radius-9 size-18 bg-color-salem mr-30"></span>
+        <span class="border-radius-9 size-18 bg-color-salem mr-30"></span>
+        <span class="border-radius-9 size-18 bg-color-salem mr-30"></span>
+        <span class="border-radius-9 size-18 bg-color-salem"></span>
+      </div>
+      <button class="btn btn-primary btn-sm buy-btn" (click)="isBuying = !isBuying">Buy</button>
+    </div>
+
+    <div class="bg-color-shark border-radius-13 m-2 simple-shadow flex-grow-1 overflow-hidden p-15">
+      <masterfx-tradingview></masterfx-tradingview>
+    </div>
+
+    <div class="bg-color-shark border-radius-7 m-2 overflow-hidden d-flex flex-column simple-shadow">
+      <div class="font-22 px-15 py-1 color-mercury">Balance</div>
+
+      <hr class="w-100 bg-color-mine-shaft m-0"/>
+
+      <div class="px-15 py-10 color-mercury d-flex justify-content-around font-14">
+        <div>Balance: <span class="font-weight-bold color-salem">{{balance.balance | formatNumber: ' '}}</span></div>
+        <div>Equity: <span class="font-weight-bold">{{balance.equity | formatNumber: ' '}}</span></div>
+        <div>Margin: <span class="font-weight-bold">{{balance.margin | formatNumber: ' '}}</span></div>
+        <div>Free margin: <span class="font-weight-bold">{{balance.freeMargin | formatNumber: ' '}}</span></div>
+        <div>Margin level (%) <span class="font-weight-bold">{{balance.marginLevel | formatNumber: ' '}}</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-300 m-2 d-flex flex-column">
+    <masterfx-risk-panel *ngIf="isBuying" class="mb-10"></masterfx-risk-panel>
+    <masterfx-trade-panel *ngIf="isBuying" (tradeClick)="isBuying=false" (tradeClose)="isBuying=false" class="mb-10"></masterfx-trade-panel>
+    <masterfx-scanner-panel class="flex-1 min-height-0"></masterfx-scanner-panel>
+  </div>
+</section>
